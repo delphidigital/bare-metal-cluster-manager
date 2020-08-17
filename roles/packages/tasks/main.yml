@@ -1,0 +1,3 @@
+- include: pin.yml
+- include: update.yml
+- include: install.yml

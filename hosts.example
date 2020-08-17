@@ -1,0 +1,27 @@
+[all:vars]
+ansible_user=root
+ansible_ssh_user=root
+ansible_python_interpreter=/usr/bin/python3
+
+[all]
+master  ansible_host=11.22.33.44 ip=10.10.10.11 etcd_member_name=master
+worker1 ansible_host=22.33.44.55 ip=10.10.10.12
+worker2 ansible_host=33.44.55.66 ip=10.10.10.13
+
+[kube-master]
+master
+
+[etcd]
+master
+
+[kube-node]
+master
+worker1
+worker2
+
+[calico-rr]
+
+[k8s-cluster:children]
+kube-master
+kube-node
+calico-rr

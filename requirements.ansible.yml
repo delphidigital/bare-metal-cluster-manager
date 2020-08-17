@@ -1,0 +1,7 @@
+roles:
+  - name: matthiaslohr.hvswitch_k8s
+    version: v1.0.0
+
+collections:
+  - name: community.kubernetes
+    version: 0.11.0

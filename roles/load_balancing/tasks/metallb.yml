@@ -1,0 +1,13 @@
+- name: Setup MetalLB
+  community.kubernetes.helm:
+    chart_repo_url: https://charts.bitnami.com/bitnami
+    chart_ref: metallb
+    chart_version: 0.1.21
+    release_name: metallb
+    release_namespace: kube-system
+    release_values:
+      configInline:
+        address-pools:
+          - name: default
+            protocol: layer2
+            addresses: "{{address_range}}"

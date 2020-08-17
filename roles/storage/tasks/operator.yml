@@ -1,0 +1,7 @@
+- name: install rook-ceph operator
+  community.kubernetes.helm:
+    chart_repo_url: https://charts.rook.io/release
+    chart_ref: rook-ceph
+    chart_version: v1.4.0
+    release_name: rook-ceph
+    release_namespace: rook-ceph

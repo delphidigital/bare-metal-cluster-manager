@@ -1,0 +1,6 @@
+- name: Add authorized ssh-keys
+  authorized_key:
+    user: "{{ ansible_user }}"
+    state: present
+    key: "{{ item }}"
+  with_items: "{{authorized_keys}}"

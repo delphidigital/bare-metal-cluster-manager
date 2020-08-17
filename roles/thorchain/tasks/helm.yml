@@ -1,0 +1,5 @@
+- name: Make helm 3
+  command: make helm
+  args:
+    chdir: node-launcher/
+    creates: /usr/local/bin/helm

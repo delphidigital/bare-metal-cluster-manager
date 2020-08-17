@@ -1,0 +1,14 @@
+- name: Install packages
+  yum:
+    name:
+      - vim
+      - build-essential
+      - git
+      - jq
+      - python3-pip
+    state: present
+
+- name: Install python dependencies
+  pip:
+    name:
+      - openshift

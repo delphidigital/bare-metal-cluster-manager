@@ -1,0 +1,7 @@
+- name: Pin Docker version
+  copy:
+    content: "Package: docker-ce\nPin: version {{docker_package_version}}.*\nPin-Priority: 1000\n"
+    dest: /etc/apt/preferences.d/docker-ce
+    owner: root
+    group: root
+    mode: 0644

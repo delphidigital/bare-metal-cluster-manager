@@ -1,0 +1,7 @@
+- name: create rook-ceph namespace
+  community.kubernetes.k8s:
+    definition:
+      apiVersion: v1
+      kind: namespace
+      metadata:
+        name: rook-ceph

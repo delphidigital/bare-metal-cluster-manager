@@ -1,0 +1,5 @@
+skip_list:
+  - 403  # Package installs should not use latest
+exclude_paths:
+  - ./kubespray/
+  - ./roles/matthiaslohr.hvswitch_k8s/

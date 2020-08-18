@@ -1,5 +1,7 @@
 /inventory/credentials/
 /roles/matthiaslohr.hvswitch_k8s/
+/roles/custom*
 /venv/
 /inventory/inventory.ini
 /private-*.yml
+/vault*

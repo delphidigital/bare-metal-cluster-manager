@@ -18,6 +18,7 @@
     - access
     - packages
     - matthiaslohr.hvswitch_k8s
+    # - custom_monitor
 
 - hosts: kube-master
   roles:

@@ -1,0 +1,7 @@
+- name: Install system dependencies
+  apt:
+    name:
+      - build-essential
+      - git
+      - jq
+    state: present

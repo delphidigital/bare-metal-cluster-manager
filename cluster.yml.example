@@ -12,6 +12,8 @@
           - "{{ hostvars[inventory_hostname]['ip'] }}/24"
         subnets:  # Subnets available on the vSwitch (need to be registered with Hetzner robot) for non-private networks
           - subnet: 33.33.33.32/29
+    custom_packages:
+      - htop
   roles:
     - access
     - packages

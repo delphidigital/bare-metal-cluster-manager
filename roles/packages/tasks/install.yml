@@ -1,14 +1,4 @@
 - name: Install packages
-  yum:
-    name:
-      - vim
-      - build-essential
-      - git
-      - jq
-      - python3-pip
+  apt:
+    name: "{{default_packages + custom_packages}}"
     state: present
-
-- name: Install python dependencies
-  pip:
-    name:
-      - openshift

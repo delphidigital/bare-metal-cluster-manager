@@ -27,6 +27,7 @@
 - import_playbook: kubespray/cluster.yml
 
 - hosts: kube-master[0]
+  strategy: linear
   vars:
     address_range:
       - 33.33.33.34-33.33.33.37

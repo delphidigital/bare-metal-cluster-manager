@@ -52,7 +52,7 @@ pip install -r requirements.python.txt
 ansible-galaxy install -r requirements.ansible.yml
 ```
 
-> Note: Mitogen does not work with ansible collections and needs to be disabled.
+> Note: [Mitogen][mitogen] does not work with ansible collections and the strategy must be changed (i.e. `strategy: linear`).
 
 ### Provisioning
 
@@ -118,6 +118,7 @@ This will install and use Ubuntu on only one of the two internal NVMe drives. Th
 [calico]: https://www.projectcalico.org
 [ceph]: https://ceph.io
 [rook]: https://rook.io
+[mitogen]: https://mitogen.readthedocs.io/en/python3/ansible.html
 [tc]: https://thorchain.org
 [tc_docs]: https://docs.thorchain.org
 [tc_deplyoing]: https://docs.thorchain.org/thornodes/kubernetes/deploying

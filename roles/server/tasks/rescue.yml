@@ -1,0 +1,9 @@
+- name: Activate rescue system
+  uri:
+    url: "{{ base_url }}/boot/{{ ansible_host }}/rescue"
+    method: POST
+    user: "{{ username }}"
+    password: "{{ password }}"
+    body_format: form-urlencoded
+    body: "os={{ os | default('linux') }}&arch={{ arch | default(64) }}&authorized_key={{ fingerprint }}"
+    status_code: 200

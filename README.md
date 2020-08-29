@@ -96,15 +96,26 @@ In order for the cluster to operate as a node in the THORCHain network deploy as
 
 ## Resetting the bare metal servers
 
+This will install and use Ubuntu on only one of the two internal NVMe drives. The unused ones will be used for persistent storage with ceph/rook. You can check the internal drive setup with `lsblk`. Change it accordingly in the command shown above when necessary.
+
+> Ubuntu 18.04 is used because kubespray does not support 20.04 (yet)
+
+### Manually
+
 Visit the [console][admin] and put each server of the cluster into rescue mode. Then execute the following script.
 
 ```bash
 installimage -a -r no -i images/Ubuntu-1804-bionic-64-minimal.tar.gz -p /:ext4:all -d nvme0n1 -f yes -t yes -n hostname
 ```
 
-This will install and use Ubuntu on only one of the two internal NVMe drives. The unused ones will be used for persistent storage with ceph/rook. You can check the internal drive setup with `lsblk`. Change it accordingly in the command shown above when necessary.
+### Automatically
 
-> Ubuntu 18.04 is used because kubespray does not support 20.04 (yet)
+Copy the example, add the variables and form a pristing cluster by running the playbook.
+
+```bash
+cp reset.yml.example reset.yml
+ansible-playbook reset.yml
+```
 
 [reset]: #resetting-the-bare-metal-servers
 [hetzner]: https://www.hetzner.com

@@ -1,0 +1,12 @@
+- hosts: test
+  strategy: linear
+  vars:
+    username:
+    password:
+    fingerprint:
+    command: "/root/.oldroot/nfs/install/installimage -a -r no -i images/Ubuntu-1804-bionic-64-minimal.tar.gz -p /:ext4:all -d nvme0n1 -f yes -t yes -n hostname"
+    # os:  # optional
+    # arch:  # optional
+  tasks:
+  - name: Reset cluster
+    include_role: name=server tasks_from=instantiate

@@ -1,0 +1,11 @@
+- name: Reboot server
+  uri:
+    url: "{{ base_url }}/reset/{{ ansible_host }}"
+    method: POST
+    user: "{{ username }}"
+    password: "{{ password }}"
+    body_format: form-urlencoded
+    body: "type=hw"
+    status_code: 200
+  delegate_to: localhost
+  ignore_errors: yes

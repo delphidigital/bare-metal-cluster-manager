@@ -1,0 +1,8 @@
+- name: Setup Installation
+  shell: "{{ command }}"
+  args:
+    chdir: /root
+  environment:
+    TERM: linux
+
+- include: reboot.yml

@@ -1,0 +1,7 @@
+- name: Waiting for the server to reappear
+  wait_for:
+    host: "{{ ansible_host }}"
+    port: 22
+    delay: 1
+    timeout: 180
+  delegate_to: localhost

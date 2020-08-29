@@ -1,0 +1,2 @@
+- include: rescue.yml
+- include: reboot.yml

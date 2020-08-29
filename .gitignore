@@ -4,4 +4,5 @@
 /venv/
 /inventory/inventory.ini
 /private-*.yml
+/reset.yml
 /vault*

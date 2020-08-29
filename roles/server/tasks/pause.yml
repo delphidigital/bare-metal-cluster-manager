@@ -1,0 +1,4 @@
+- name: "{{ message }}"
+  pause:
+    seconds: "{{ seconds | default(30) }}"
+  delegate_to: localhost

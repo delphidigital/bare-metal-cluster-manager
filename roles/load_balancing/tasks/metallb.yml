@@ -10,4 +10,4 @@
         address-pools:
           - name: default
             protocol: layer2
-            addresses: "{{address_range}}"
+            addresses: "{{ vswitches[0].range }}"

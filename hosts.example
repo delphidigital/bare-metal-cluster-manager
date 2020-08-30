@@ -1,30 +1,52 @@
-[all:vars]
-ansible_user=root
-ansible_ssh_user=root
-ansible_python_interpreter=/usr/bin/python3
-
-[production]
-master  ansible_host=11.22.33.44 ip=10.10.10.11 etcd_member_name=master
-worker1 ansible_host=22.33.44.55 ip=10.10.10.12
-worker2 ansible_host=33.44.55.66 ip=10.10.10.13
-
-[all:children]
-production
-
-[kube-master]
-master
-
-[etcd]
-master
-
-[kube-node]
-master
-worker1
-worker2
-
-[calico-rr]
-
-[k8s-cluster:children]
-kube-master
-kube-node
-calico-rr
+all:
+  children:
+    environment:
+      hosts:
+        node1:
+          ansible_host: 11.22.33.44
+          etcd_member_name: node1
+          ip: 10.10.10.11
+        node2:
+          ansible_host: 22.33.44.55
+          etcd_member_name: node2
+          ip: 10.10.10.12
+        node3:
+          ansible_host: 33.44.55.66
+          etcd_member_name: node3
+          ip: 10.10.10.13
+      vars:
+        context: environment
+        authorized_keys:
+          # - key1
+          # - key2
+        vswitches:
+          - name: tc-k8s-net  # vSwitch name, used for naming the routing table.
+            routing_table: 1  # ID for the routing table.
+            vlan: 4000  # VLAN ID for the vSwitch. 4000-4091 supported by Hetzner.
+            subnets: [{subnet: 33.33.33.32/29}]
+            gateway: 33.33.33.33  # If the vSwitch has a subnet, this variable should contain the subnet's gateway IP address
+            range: [33.33.33.34-33.33.33.37]
+            addresses: ["{{ hostvars[inventory_hostname]['ip'] }}/24"]  # IP addresses for the vSwitch network interface (per host)
+        custom_packages:
+          - htop
+        custom_roles:
+          # - custom_monitor
+    etcd:
+      hosts:
+        node1: {}
+        node2: {}
+        node3: {}
+    k8s-cluster:
+      children:
+        calico-rr: {}
+        kube-master:
+          hosts:
+            node1: {}
+            node2: {}
+            node3: {}
+        kube-node:
+          hosts:
+            node1: {}
+            node2: {}
+            node3: {}
+    ungrouped: {}

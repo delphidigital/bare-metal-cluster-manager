@@ -5,3 +5,4 @@
     chart_version: v1.4.0
     release_name: rook-ceph
     release_namespace: rook-ceph
+    wait: yes

@@ -2,7 +2,7 @@
 /roles/matthiaslohr.hvswitch_k8s/
 /roles/custom*
 /venv/
-/inventory/inventory.ini
+/inventory/*.yml
 /private-*.yml
 /reset.yml
 /vault*

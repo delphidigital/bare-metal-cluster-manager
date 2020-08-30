@@ -16,9 +16,16 @@ Executing the scripts in combination with some manual procedures will get you cl
 Acquire a couple of [servers][buy] as the basis for a cluster (`AX41-NVME`'s are working well for instance). Visit the [admin panel][admin] and name the servers appropriately.
 
 ```text
-tc-k8s-master
+tc-k8s-node1
+tc-k8s-node2
+tc-k8s-node3
+...
+
+tc-k8s-master1
+tc-k8s-master2
 tc-k8s-worker1
 tc-k8s-worker2
+tc-k8s-worker3
 ...
 ```
 
@@ -56,36 +63,35 @@ ansible-galaxy install -r requirements.ansible.yml
 
 ### Provisioning
 
+Create a deplyment environment inventory file for each cluster you want to manage.
+
 ```bash
-cp hosts.example inventory/inventory.ini
-cp cluster.yml.example private-cluster.yml
+cp hosts.example inventory/production.yml
+cp hosts.example inventory/test.yml
+cp hosts.example inventory/environment.yml
+...
+
+cp hosts.example inventory/production-01.yml
+cp hosts.example inventory/production-02.yml
+...
+
+cp hosts.example inventory/production-helsinki.yml
+cp hosts.example inventory/whatever.yml
 ```
 
-Add your server ip's to `inventory.ini` and your network information into `private-cluster.yml`
-
-If you want to manage multiple clusters simply name the files according to the pattern below.
-
-```text
-private-cluster-01.yml
-private-cluster-02.yml
-private-cluster-02.yml
-...
-
-private-test.yml
-...
-
-private-helsinki-01.yml
-...
-
-private-whatever.yml
-```
+Edit the inventory file with your server ip's and network information and customize everything to your needs.
 
 ```bash
 # Manage a cluster
-ansible-playbook private-cluster.yml
+ansible-playbook cluster.yml -i inventory/environment.yml
 
 # If you want to run kubespray separately
-ansible-playbook kubespray/cluster.yml
+ansible-playbook kubespray/cluster.yml -i inventory/environment.yml
+
+# Run custom playbooks
+ansible-playbook private-cluster.yml -i inventory/environment.yml
+ansible-playbook private-test-cluster.yml -i inventory/environment.yml
+ansible-playbook private-whatever-cluster.yml -i inventory/environment.yml
 ```
 
 > Check [this][kubespray] out for more playbooks on cluster management.
@@ -110,7 +116,7 @@ installimage -a -r no -i images/Ubuntu-1804-bionic-64-minimal.tar.gz -p /:ext4:a
 
 ### Automatically
 
-Copy the example, add the variables and form a pristing cluster by running the playbook.
+Copy the example, add the variables and form a pristine cluster by running the playbook.
 
 ```bash
 cp reset.yml.example reset.yml

@@ -1,0 +1,35 @@
+- hosts: all
+  tasks:
+    - name: Manage server
+      include_role:
+        name: "{{ role }}"
+      loop: "{{default_roles + custom_roles|default([])}}"
+      loop_control:
+        loop_var: role
+
+- hosts: kube-master
+  strategy: linear
+  roles: [thorchain]
+
+- import_playbook: kubespray/cluster.yml
+
+- hosts: all
+  tasks:
+    - name: Let the nodes breathe for a bit
+      pause: seconds=30
+
+- hosts: kube-master
+  tasks:
+    - name: Install storage dependencies
+      include_role: name=storage tasks_from=dependencies
+
+- hosts: kube-master[0]
+  strategy: linear
+  roles:
+    - storage
+    - load_balancing
+
+- hosts: all
+  tasks:
+    - name: Give rook-ceph some time to properly spin up
+      pause: seconds=180

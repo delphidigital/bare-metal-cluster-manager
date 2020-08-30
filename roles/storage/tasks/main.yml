@@ -1,4 +1,3 @@
-- include: dependencies.yml
 - include: namespace.yml
 - include: operator.yml
 - include: ceph.yml

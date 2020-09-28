@@ -1,4 +1,5 @@
 - name: Upgrade all packages to the latest version
+  become: true
   apt:
     name: "*"
     state: latest

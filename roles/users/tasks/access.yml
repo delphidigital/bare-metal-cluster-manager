@@ -1,0 +1,5 @@
+- name: Manage authorized ssh keys
+  authorized_key:
+    user: "{{ main_user }}"
+    key: "{{ item }}"
+  with_items: "{{ authorized_keys }}"

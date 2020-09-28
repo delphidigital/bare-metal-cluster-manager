@@ -1,17 +1,7 @@
-- hosts: all
-  tasks:
-    - name: Manage server
-      include_role:
-        name: "{{ role }}"
-      loop: "{{default_roles + custom_roles|default([])}}"
-      loop_control:
-        loop_var: role
-
 - hosts: kube-master
-  strategy: linear
-  roles: [thorchain]
-
-- import_playbook: kubespray/cluster.yml
+  tasks:
+    - name: Manage kubeconfig
+      include_role: name=users tasks_from=kubeconfig
 
 - hosts: all
   tasks:
@@ -24,6 +14,7 @@
       include_role: name=storage tasks_from=dependencies
 
 - hosts: kube-master[0]
+  become: true
   strategy: linear
   roles:
     - storage

@@ -1,8 +1,12 @@
 - name: Setup Installation
-  shell: "{{ command }}"
+  shell: "{{ hetzner.command }}"
   args:
     chdir: /root
   environment:
     TERM: linux
 
 - include: reboot.yml
+
+- include: pause.yml
+    message="Pause for the reboot to kick in"
+    seconds=60

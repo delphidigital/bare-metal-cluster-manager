@@ -2,8 +2,8 @@
   uri:
     url: "{{ base_url }}/reset/{{ ansible_host }}"
     method: POST
-    user: "{{ username }}"
-    password: "{{ password }}"
+    user: "{{ hetzner.username }}"
+    password: "{{ hetzner.password }}"
     body_format: form-urlencoded
     body: "type=hw"
     status_code: 200

@@ -1,0 +1,5 @@
+- name: Manage root user
+  user:
+    name: root
+    password: "{{ root_pass | string | password_hash('sha512', pw_salt) }}"
+    shell: /bin/bash

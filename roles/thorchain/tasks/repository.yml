@@ -1,6 +1,6 @@
 - name: Add node-launcher repository
   git:
     repo: https://gitlab.com/thorchain/devops/node-launcher
-    dest: ~/node-launcher
+    dest: node-launcher
     version: master
     update: yes

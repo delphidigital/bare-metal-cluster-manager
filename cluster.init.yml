@@ -1,0 +1,13 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: Manage server
+      include_role:
+        name: "{{ role }}"
+      loop: "{{default_roles + custom_roles|default([])}}"
+      loop_control:
+        loop_var: role
+
+- hosts: kube-master
+  strategy: linear
+  roles: [thorchain]

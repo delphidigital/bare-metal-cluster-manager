@@ -1,0 +1,20 @@
+- hosts: all
+  strategy: linear
+  vars:
+    ansible_ssh_user: root
+    ssh_allow_users: "{{ main_user }}"
+    sysctl_overwrite:
+      net.ipv4.ip_forward: 1
+  tasks:
+  - name: instantiate servers
+    include_role: name=server tasks_from=instantiate
+
+- hosts: all
+  strategy: linear
+  vars:
+    ansible_ssh_user: root
+  tasks:
+  - name: Reboot the servers
+    include_role: name=server tasks_from=reboot
+  - name: Pause for the hardware reset to kick in
+    include_role: name=server tasks_from=pause

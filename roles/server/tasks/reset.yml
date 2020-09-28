@@ -1,2 +1,7 @@
 - include: rescue.yml
 - include: reboot.yml
+
+- include: pause.yml
+    message="Pause for the hardware reset to kick in"
+
+- include: wait.yml

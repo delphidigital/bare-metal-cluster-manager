@@ -1,5 +1,12 @@
 - name: Make helm 3
+  become: true
   command: make helm
   args:
-    chdir: node-launcher/
+    chdir: "/home/{{ main_user }}/node-launcher/"
     creates: /usr/local/bin/helm
+
+- name: Modify helm executable
+  become: true
+  file:
+    path: /usr/local/bin/helm
+    mode: a+rx

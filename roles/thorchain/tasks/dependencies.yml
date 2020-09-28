@@ -1,4 +1,5 @@
 - name: Install system dependencies
+  become: true
   apt:
     name:
       - build-essential

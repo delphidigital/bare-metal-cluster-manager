@@ -1,10 +1,12 @@
 - name: Install system dependencies
+  become: true
   apt:
     name:
       - python3-pip
     state: present
 
 - name: Install python dependencies
+  become: true
   pip:
     name:
       - openshift

@@ -1,8 +1,9 @@
 /inventory/credentials/
-/roles/matthiaslohr.hvswitch_k8s/
+/roles/*.*
 /roles/custom*
 /venv/
 /inventory/*.yml
 /private-*.yml
 /reset.yml
 /vault*
+/Makefile

@@ -1,4 +1,5 @@
 - name: Install packages
+  become: true
   apt:
     name: "{{default_packages + custom_packages}}"
     state: present

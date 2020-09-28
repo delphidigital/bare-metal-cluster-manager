@@ -1,0 +1,7 @@
+- hosts: all
+  strategy: linear
+  vars:
+    ansible_ssh_user: root
+  tasks:
+  - name: Bootstrap Installation
+    include_role: name=server tasks_from=bootstrap

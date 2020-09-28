@@ -2,8 +2,8 @@
   uri:
     url: "{{ base_url }}/boot/{{ ansible_host }}/rescue"
     method: POST
-    user: "{{ username }}"
-    password: "{{ password }}"
+    user: "{{ hetzner.username }}"
+    password: "{{ hetzner.password }}"
     body_format: form-urlencoded
-    body: "os={{ os | default('linux') }}&arch={{ arch | default(64) }}&authorized_key={{ fingerprint }}"
+    body: "os={{ hetzner.os | default('linux') }}&arch={{ hetzner.arch | default(64) }}&authorized_key={{ hetzner.fingerprint }}"
     status_code: 200

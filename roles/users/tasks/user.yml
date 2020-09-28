@@ -1,0 +1,8 @@
+- name: Manage sudo user
+  user:
+    name: "{{ main_user }}"
+    uid: 1000
+    groups: sudo
+    append: yes
+    password: "{{ ansible_become_pass | string | password_hash('sha512', pw_salt) }}"
+    shell: /bin/bash

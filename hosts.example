@@ -15,10 +15,19 @@ all:
           etcd_member_name: node3
           ip: 10.10.10.13
       vars:
+        main_user: username
+        ansible_ssh_user: username
+        ansible_become_pass: user_password
+        root_pass: root_password
+        pw_salt: salt
         context: environment
         authorized_keys:
           # - key1
           # - key2
+        hetzner:
+          command: "/root/.oldroot/nfs/install/installimage -a -r no -i images/Ubuntu-1804-bionic-64-minimal.tar.gz -p /:ext4:all -d nvme0n1 -f yes -t yes -n hostname"
+          # os:  # optional
+          # arch:  # optional
         vswitches:
           - name: tc-k8s-net  # vSwitch name, used for naming the routing table.
             routing_table: 1  # ID for the routing table.

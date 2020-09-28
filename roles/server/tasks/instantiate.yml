@@ -1,20 +1,11 @@
-- include: reset.yml
-
-- include: pause.yml
-    message="Pause for the hardware reset to kick in"
-
-- include: wait.yml
-
-- include: bootstrap.yml
-
-- include: pause.yml
-    message="Pause for the reboot to kick in"
-    seconds=60
-
-- include: wait.yml
-
-- include: pause.yml
-    message="Let the server breathe a little"
-
 - name: Post installation update
   include_role: name=packages tasks_from=update
+
+- name: Manage user
+  include_role: name=users
+
+- name: Harden OS
+  include_role: name=dev-sec.os-hardening
+
+- name: Harden SSH
+  include_role: name=dev-sec.ssh-hardening

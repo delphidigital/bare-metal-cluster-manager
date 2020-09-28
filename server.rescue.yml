@@ -1,0 +1,5 @@
+- hosts: all
+  strategy: linear
+  tasks:
+  - name: Reboot into rescue
+    include_role: name=server tasks_from=reset

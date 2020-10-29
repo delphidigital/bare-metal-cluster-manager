@@ -53,4 +53,4 @@ docker_rpm_keepcache: 0
 ## This string should be exactly as you wish it to appear.
 # docker_options: ""
 
-docker_package_version: 18.09
+docker_package_version: 19.03

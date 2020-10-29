@@ -25,7 +25,7 @@ all:
           # - key1
           # - key2
         hetzner:
-          command: "/root/.oldroot/nfs/install/installimage -a -r no -i images/Ubuntu-1804-bionic-64-minimal.tar.gz -p /:ext4:all -d nvme0n1 -f yes -t yes -n hostname"
+          command: "/root/.oldroot/nfs/install/installimage -a -r no -i images/Ubuntu-2004-focal-64-minimal.tar.gz -p /:ext4:all -d nvme0n1 -f yes -t yes -n hostname"
           # os:  # optional
           # arch:  # optional
         vswitches:

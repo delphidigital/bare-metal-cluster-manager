@@ -130,6 +130,41 @@ ansible-playbook server.instantiate.yml -i inventory/environment.yml
 
 ## Administration
 
+### Adding worker nodes to the cluster
+
+Register the new node(s) in your existing inventory file and run the scale command.
+
+> Keep your network limitations in mind. You can use a maximum of 4 nodes for a `/29` subnet. Prepare accordingly if necessary.
+
+```yml
+node4:
+  ansible_host: 44.55.66.77
+  etcd_member_name: node4
+  ip: 10.10.10.14
+node5:
+  ansible_host: 55.66.77.88
+  etcd_member_name: node5
+  ip: 10.10.10.15
+
+kube-node:
+  hosts:
+    node1: {}
+    node2: {}
+    node3: {}
+    node4: {}
+    node5: {}
+```
+
+```bash
+ansible-playbook --become --become-user=root kubespray/scale.yml -i inventory/environment.yml
+```
+
+### Removing worker nodes from the cluster
+
+```bash
+ansible-playbook --become --become-user=root -e node=node4 kubespray/remove-node.yml -i inventory/environment.yml
+```
+
 ### File system
 
 Deploy, use and remove the [Rook Toolbox](toolbox).

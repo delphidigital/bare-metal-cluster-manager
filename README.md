@@ -128,6 +128,20 @@ Instantiate the servers.
 ansible-playbook server.instantiate.yml -i inventory/environment.yml
 ```
 
+## Administration
+
+### File system
+
+Deploy, use and remove the [Rook Toolbox](toolbox).
+
+```bash
+ansible-playbook cluster.toolbox.yml -i inventory/environment.yml
+
+kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') bash
+
+ansible-playbook cluster.toolbox.yml -e state=absent -i inventory/environment.yml
+```
+
 [reset]: #resetting-the-bare-metal-servers
 [hetzner]: https://www.hetzner.com
 [buy]: https://www.hetzner.com/dedicated-rootserver/matrix-ax
@@ -140,6 +154,7 @@ ansible-playbook server.instantiate.yml -i inventory/environment.yml
 [calico]: https://www.projectcalico.org
 [ceph]: https://ceph.io
 [rook]: https://rook.io
+[toolbox]: https://rook.io/docs/rook/v1.4/ceph-toolbox.html
 [mitogen]: https://mitogen.readthedocs.io/en/python3/ansible.html
 [tc]: https://thorchain.org
 [tc_docs]: https://docs.thorchain.org

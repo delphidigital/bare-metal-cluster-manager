@@ -1,0 +1,6 @@
+- hosts: kube-master[0]
+  become: true
+  strategy: linear
+  tasks:
+    - name: Manage ceph toolbox
+      include_role: name=storage tasks_from=toolbox

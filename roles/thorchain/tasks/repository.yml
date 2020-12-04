@@ -2,5 +2,5 @@
   git:
     repo: https://gitlab.com/thorchain/devops/node-launcher
     dest: node-launcher
-    version: master
+    version: "{{ tc_node_launcher_branch | default('master') }}"
     update: yes

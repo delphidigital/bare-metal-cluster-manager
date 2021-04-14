@@ -1,8 +1,8 @@
 roles:
   - name: dev-sec.os-hardening
-    version: v6.2.0
+    version: 6.2.0
   - name: dev-sec.ssh-hardening
-    version: v9.7.0
+    version: 9.7.0
   - name: matthiaslohr.hvswitch_k8s
     version: v1.0.0
 
